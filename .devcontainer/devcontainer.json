@@ -1,0 +1,21 @@
+{
+    "name": "LaTeX Presentation",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "."
+    },
+    "workspaceFolder": "/workspace",
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "James-Yu.latex-workshop",
+                // "valentjn.vscode-ltex"
+            ]
+        }
+    },
+    "remoteUser": "vscode",
+    "updateRemoteUserUID": true
+}
