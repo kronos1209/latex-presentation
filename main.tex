@@ -9,7 +9,7 @@
 \usepackage{listings,style/listings/listings-rust}        % コードブロック用
 \usepackage{booktabs}      % 表の罫線用
 \usepackage{caption}     % キャプションの設定
-
+\usepackage{style/tikz-uml/tikz-uml}
 
 % lstings のグローバル設定
 % コードブロックはすべて Rust コードとして解釈する
@@ -142,4 +142,14 @@ async fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     \end{lstlisting}
 \end{frame}
 
+\begin{frame}[fragile]{uml図の挿入}
+    \begin{tikzpicture}
+        \umlclass[x=0, y=0]{Person}{
+            - name: String \\
+            - age: Int
+        }{
+            + greet(): void
+        }
+    \end{tikzpicture}
+\end{frame}
 \end{document}
