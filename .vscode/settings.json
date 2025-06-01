@@ -1,0 +1,23 @@
+{
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk(lualatex)",
+            "tools": [
+                "latexmk-lualatex"
+            ]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk-lualatex",
+            "command": "latexmk",
+        }
+    ],
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.formatting.latex": "latexindent",
+    "latex-workshop.latex.texDirs": [
+        "./style/listings"
+    ],
+    "latex-workshop.latex.outDir": "%DIR%/out"
+}

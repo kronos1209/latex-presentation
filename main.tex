@@ -1,0 +1,73 @@
+% beamer クラスを指定 + アスペクト比を16:9に設定（4:3 の場合は aspectration=43 を指定する）
+\documentclass[aspectratio=169]{beamer}
+
+\usepackage{luatexja}           % 日本語処理
+\usepackage{luatexja-fontspec}  % フォント指定
+% \setmainjfont{IPAexGothic}      % 任意の日本語フォント（WSLに入ってる前提）
+
+\usepackage{graphicx}        % 画像挿入用
+\usepackage{listings,listings-rust}        % コードブロック用
+
+\usepackage{booktabs}      % 表の罫線用
+\usepackage{caption}     % キャプションの設定
+
+% Beamerのテーマ設定
+\usetheme{Warsaw}
+\setbeamertemplate{navigation symbols}{}
+% \setbeamertemplate{footline}{}
+
+
+\title{LuaLaTeX + beamer サンプル}
+\author{あなたの名前}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{日本語テスト}
+    LuaLaTeX を使った日本語対応の beamer スライドです。
+\end{frame}
+
+\begin{frame}[fragile]{コードブロック}
+    \begin{columns}
+        \begin{column}{0.5\linewidth}
+            \begin{lstlisting}[language=Rust,style=mdRust]
+fn main() {
+    println!("こんにちは、世界！");
+}
+pub trait Hoge {
+    fn huga(&self) -> &'static str;
+}
+\end{lstlisting}
+        \end{column}
+        \begin{column}{0.5\linewidth}
+            \begin{lstlisting}[language=Rust,style=mdRust]
+fn main() {
+    println!("Hello, world!");
+}
+pub trait Hoge {
+    fn huga(&self) -> &'static str;
+}
+\end{lstlisting}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{図の挿入}
+    \includegraphics[width=0.6\linewidth]{example-image}
+\end{frame}
+
+\begin{frame}{表の挿入}
+    \begin{tabular}{lll}
+        \toprule
+        名前 & 職業    & 年齢 \\
+        \midrule
+        佐藤 & エンジニア & 28 \\
+        鈴木 & デザイナー & 35 \\
+        \bottomrule
+    \end{tabular}
+\end{frame}
+
+\end{document}
