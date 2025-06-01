@@ -21,15 +21,12 @@ LaTeX を利用してプレゼンテーション用の pdf を作成する方法
 > 以下のコマンドだと不要なパッケージのインストールされるため日本語に必要なパッケージのみをインストールできるように調整したい
 
 ```bash
-# 細かい設定なんかしたくない人向け
-sudo apt install texlive-full
-
-# LuaLaTeX のインストール
-sudo apt install texlive-lang-japanese texlive-latex-extra texlive-luatex 
-
-# LaTeX のユーティリティ
-# ビルドレシピ定義とかフォーマッタとか
-sudo apt intall latexmk texlive-extra-utils
+# 必要なもののインストール
+# 一段目は日本語対応の LuaLaTex のインストール
+# 二段名はユーティリティのインストール
+sudo apt install \
+    texlive-lang-japanese texlive-latex-extra texlive-luatex \
+    latexmk texlive-extra-utils
 ```
 
 ## .latexmkrc でどのようにコンパイルするか設定
