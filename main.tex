@@ -143,13 +143,60 @@ async fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
 \end{frame}
 
 \begin{frame}[fragile]{uml図の挿入}
-    \begin{tikzpicture}
-        \umlclass[x=0, y=0]{Person}{
-            - name: String \\
-            - age: Int
-        }{
-            + greet(): void
-        }
-    \end{tikzpicture}
+    \resizebox{\textwidth}{0.8\textheight}{
+        \begin{tikzpicture}
+
+            % インターフェース
+            \umlinterface[x=0, y=3]{IPrintable}{
+                + print(): void
+            }
+
+            % 親クラス
+            \umlclass[x=5, y=6]{Document}{
+                - content: String
+                + title: String
+            }{
+                + getContent(): String
+                + setContent(content: String): void
+            }
+
+            % サブクラス1
+            \umlclass[x=0, y=0]{PDFDocument}{
+                - pdfVersion: Float
+            }{
+                + generate(): void
+            }
+
+            % サブクラス2
+            \umlclass[x=5, y=0]{WordDocument}{
+                - template: String
+            }{
+                + export(): void
+            }
+
+            % 依存先クラス
+            \umlclass[x=10, y=0]{Printer}{
+                + model: String
+            }{
+                + print(document: Document): void
+            }
+
+            % サブクラスへの継承
+            \umlinherit{PDFDocument}{Document}
+            \umlinherit{WordDocument}{Document}
+
+            % インターフェースの実装
+            \umlimpl{PDFDocument}{IPrintable}
+            \umlimpl{WordDocument}{IPrintable}
+
+            % Printer との集約
+            \umluniassoc[mult=1]{Printer}{PDFDocument}
+            \umluniassoc[mult=1]{Printer}{WordDocument}
+
+            % Document → Printer への依存（点線矢印）
+            \umldep{Document}{Printer}
+
+        \end{tikzpicture}
+    }
 \end{frame}
 \end{document}
