@@ -17,11 +17,28 @@
 
 % Beamerのテーマ設定
 \usetheme{Madrid}
-\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{navigation symbols}{}   % スライドのナビゲーションバーを非表示にする 
+% フッターとして[タイトル、日付、ページ番号]のみが表示されるようにする
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=0.7\paperwidth,ht=2.5ex,dp=1ex,leftskip=1em]{author in head/foot}%
+      \usebeamerfont{title in head/foot}\insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.2\paperwidth,ht=2.5ex,dp=1ex,center]{date in head/foot}%
+      \usebeamerfont{date in head/foot}\insertshortdate
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.1\paperwidth,ht=2.5ex,dp=1ex,right]{frame number in head/foot}%
+      \usebeamerfont{page number in head/foot}\insertframenumber{} / \inserttotalframenumber
+      \hspace*{1em}
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
 
-\title{タイトルを入力する}
-\author{名前を入力する}
-\institute{所属を入力する}
+\title{タイトル}
+\author{名前}
+\institute{所属}
 \date{\today}   % \today はビルドした日付として解釈される  
 \begin{document}
 
