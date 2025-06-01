@@ -7,20 +7,21 @@
 
 \usepackage{graphicx}        % 画像挿入用
 \usepackage{listings,listings-rust}        % コードブロック用
-
 \usepackage{booktabs}      % 表の罫線用
 \usepackage{caption}     % キャプションの設定
 
+% lstings のグローバル設定
+% コードブロックはすべて Rust コードとして解釈する
+\lstset{language=Rust, style=mdRust}
+
 % Beamerのテーマ設定
-\usetheme{Warsaw}
+\usetheme{Madrid}
 \setbeamertemplate{navigation symbols}{}
-% \setbeamertemplate{footline}{}
 
-
-\title{LuaLaTeX + beamer サンプル}
-\author{あなたの名前}
-\date{\today}
-
+\title{タイトルを入力する}
+\author{名前を入力する}
+\institute{所属を入力する}
+\date{\today}   % \today はビルドした日付として解釈される  
 \begin{document}
 
 \frame{\titlepage}
@@ -30,26 +31,57 @@
 \end{frame}
 
 \begin{frame}[fragile]{コードブロック}
+    おはようございます. \par
+    以下は Rust のコードブロックの例です。\par
+    ほげほげうげほげ\par
+
+    % このスライド内でのみコードブロックのフォントサイズを小さくする
+    \lstset{basicstyle=\tiny}
+
     \begin{columns}
         \begin{column}{0.5\linewidth}
-            \begin{lstlisting}[language=Rust,style=mdRust]
-fn main() {
-    println!("こんにちは、世界！");
+            \begin{lstlisting}
+#[tokio::main]
+async fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    let _guard = common::init(
+        env!("CARGO_PKG_NAME").to_string(),
+        env!("CARGO_PKG_VERSION").to_string(),
+    );
+    tonic::transport::Server::builder()
+        .layer(tonic_tracing_opentelemetry::middleware::server::OtelGrpcLayer::default())
+        .add_service(
+            proto_definition::product::product_service_server::ProductServiceServer::new(
+                product::product::Product,
+            ),
+        )
+        .serve("0.0.0.0:8082".parse()?)
+        .await?;
+    Ok(())
 }
-pub trait Hoge {
-    fn huga(&self) -> &'static str;
-}
+
 \end{lstlisting}
         \end{column}
         \begin{column}{0.5\linewidth}
-            \begin{lstlisting}[language=Rust,style=mdRust]
-fn main() {
-    println!("Hello, world!");
+            \begin{lstlisting}
+#[tokio::main]
+async fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    let _guard = common::init(
+        env!("CARGO_PKG_NAME").to_string(),
+        env!("CARGO_PKG_VERSION").to_string(),
+    );
+    tonic::transport::Server::builder()
+        .layer(tonic_tracing_opentelemetry::middleware::server::OtelGrpcLayer::default())
+        .add_service(
+            proto_definition::product::product_service_server::ProductServiceServer::new(
+                product::product::Product,
+            ),
+        )
+        .serve("0.0.0.0:8082".parse()?)
+        .await?;
+    Ok(())
 }
-pub trait Hoge {
-    fn huga(&self) -> &'static str;
-}
-\end{lstlisting}
+
+            \end{lstlisting}
         \end{column}
     \end{columns}
 
@@ -68,6 +100,28 @@ pub trait Hoge {
         鈴木 & デザイナー & 35 \\
         \bottomrule
     \end{tabular}
+\end{frame}
+
+\begin{frame}[fragile]{追加}
+    \begin{lstlisting}
+#[tokio::main]
+async fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    let _guard = common::init(
+        env!("CARGO_PKG_NAME").to_string(),
+        env!("CARGO_PKG_VERSION").to_string(),
+    );
+    tonic::transport::Server::builder()
+        .layer(tonic_tracing_opentelemetry::middleware::server::OtelGrpcLayer::default())
+        .add_service(
+            proto_definition::product::product_service_server::ProductServiceServer::new(
+                product::product::Product,
+            ),
+        )
+        .serve("0.0.0.0:8082".parse()?)
+        .await?;
+    Ok(())
+}
+    \end{lstlisting}
 \end{frame}
 
 \end{document}

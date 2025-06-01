@@ -130,4 +130,19 @@ $out_dir = 'out';
    1. 内容は [listings-rust](https://github.com/denki/listings-rust) の .sty と上で追加した設定を記述する
 3. listings-rust ディレクトリ内で `mktexlsr .` を実行する
    1. これにより LaTeX が追加したパッケージを認識できるようになる
-4. .tex ファイル内で `\usepackage{listings,listings-rust}` を記述することで利用できるようになる
+4. .tex ファイル内で `\usepackage{listings,listings-rust}` 
+
+# よくあるシチュエーション
+
+## 警告：Overfull \vbox or \hbox
+
+確保している領域を超えてしまっていおり、もしかしたら正常に表示されていない可能性がある
+
+- コードブロックなどが途中までしか表示されていない
+
+## コードブロックを入れたい
+
+`\begin{frane}` に [fragile] オプションをつける。
+fragile オプションをつけることでこのスライド内では入力したテキスト通りに LaTex が出力してくれるようになる。
+
+これをつけないとコードブロック内で特殊文字 ('[','{' など)を利用した場合にうまくビルドが通らない
