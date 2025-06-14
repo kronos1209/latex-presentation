@@ -1,20 +1,91 @@
 {
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk (from .latexmkrc)",
+            "command": "latexmk",
+            "args": [
+                "-r",
+                "%WORKSPACE_FOLDER%/.latexmkrc",
+            ]
+        }
+        // {
+        //     "name": "latexmk (lualatex)",
+        //     "command": "latexmk",
+        //     "args": [
+        //         "-shell-escape",
+        //         "-synctex=1",
+        //         "-interaction=nonstopmode",
+        //         "-file-line-error",
+        //         "-lualatex",
+        //         "-outdir=%OUTDIR%",
+        //         "%DOC%"
+        //     ],
+        //     "env": {
+        //         "TEXINPUTS": "%WORKSPACE_FOLDER%/style//:"
+        //     }
+        // }
+    ],
     "latex-workshop.latex.recipes": [
         {
-            "name": "latexmk(lualatex)",
+            "name": "latexmk（lualatex）",
             "tools": [
-                "latexmk-lualatex"
+                "latexmk (from .latexmkrc)"
             ]
         }
     ],
-    "latex-workshop.latex.tools": [
-        {
-            "name": "latexmk-lualatex",
-            "command": "latexmk",
-        }
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux",
+        "*.bbl",
+        "*.blg",
+        "*.idx",
+        "*.ind",
+        "*.lof",
+        "*.lot",
+        "*.out",
+        "*.toc",
+        "*.acn",
+        "*.acr",
+        "*.alg",
+        "*.glg",
+        "*.glo",
+        "*.gls",
+        "*.ist",
+        "*.fls",
+        "*.fdb_latexmk",
+        "*.synctex.gz",
+        // for Beamer files
+        "_minted*",
+        "*.nav",
+        "*.snm",
+        "*.vrb",
     ],
-    "latex-workshop.view.pdf.viewer": "tab",
-    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.latex.autoBuild.run": "onFileChange",
+    "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/out",
+    "latex-workshop.latex.rootFile.doNotPrompt": true,
+    "latex-workshop.latex.rootFile.useSubFile": false,
+    // latexindent の設定
     "latex-workshop.formatting.latex": "latexindent",
-    "latex-workshop.latex.outDir": "%DIR%/out"
+    "latex-workshop.formatting.latexindent.args": [
+        // ワークスペースのルートにある .latexindent.yaml を使用する
+        "-l",
+        "%WORKSPACE_FOLDER%/.latexindent.yaml",
+        // 一時ファイルを latex のビルド出力ディレクトり出力する
+        "-c",
+        "%DIR%/",
+        "-m",
+        "%TMPFILE%",
+        "-y=defaultIndent: '%INDENT%'"
+    ],
+    // pdf ビューアの設定
+    // evince を使用する
+    "latex-workshop.view.pdf.viewer": "external",
+    "latex-workshop.view.pdf.external.viewer.command": "evince",
+    "latex-workshop.view.pdf.external.viewer.args": [
+        "%PDF%"
+    ],
+    "latex-workshop.view.autoFocus.enabled": true,
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "latex-workshop.message.error.show": true,
+    "latex-workshop.message.warning.show": true
 }

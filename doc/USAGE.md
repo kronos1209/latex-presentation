@@ -8,6 +8,34 @@
 
 よく使うパッケージの使い方などをまとめる予定の場所
 
+# beamer 
+
+LaTeX でスライドを作成するために利用するパッケージ
+
+使い方は以下リンクあたりを参考にする
+
+https://www.overleaf.com/learn/latex/Beamer
+
+# 利用例
+
+```latex
+% ドキュメントクラスとして beamer を指定する
+% aspectratio はアスペクト比を指定することができるいオプションで、
+\documentclass[aspectratio=169]{beamer}
+
+\begin{document}
+
+% 
+\begin{frame}[options]
+\frametitle{Slide Title}
+
+Here is content parts
+
+\end{frame}
+
+\end{document}
+```
+
 # lstlisting
 
 コードブロックを記述するためのパッケージです。

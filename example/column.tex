@@ -1,0 +1,18 @@
+\begin{frame}[fragile]{二分割スライド}
+    おはようございます. \par
+    ここで記述する文字列はスライドの横幅いっぱいまで利用して描画されます.\par
+
+    \noindent\rule[7pt]{\linewidth}{0.4pt}
+    
+    % このスライド内でのみコードブロックのフォントサイズを小さくする
+    \lstset{basicstyle=\tiny}
+
+    \begin{columns}
+        \begin{column}{0.5\linewidth}
+            こっちは左側のコンテンツが表示されます。
+        \end{column}
+        \begin{column}{0.5\linewidth}
+            こっちは右側のコンテンツが表示されます。
+        \end{column}
+    \end{columns}
+\end{frame}
