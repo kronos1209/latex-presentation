@@ -1,0 +1,111 @@
+% beamer クラスを指定 + アスペクト比を16:9に設定（4:3 の場合は aspectration=43 を指定する）
+\documentclass[aspectratio=169]{beamer}
+
+\usepackage{luatexja}           % 日本語処理
+\usepackage{luatexja-fontspec}  % フォント指定
+% \setmainjfont{IPAexGothic}      % 任意の日本語フォント（WSLに入ってる前提）
+
+% bibtex の設定（参考文献の管理する）
+\usepackage[backend=biber]{biblatex}
+\addbibresource{reference.bib}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{minted}         %python の pygments を利用してコードハイライトを行う
+% \usepackage{xcolor}
+\usepackage{graphicx}        % 画像挿入用
+\usepackage{listings}        % コードブロック用
+\usepackage{booktabs}      % 表の罫線用
+\usepackage{caption}     % キャプションの設定
+\usepackage{tikz}       % 図形用
+\usetikzlibrary {datavisualization}
+
+% /style/* から
+\usepackage{listings-rust}
+\usepackage{tikz-uml}
+
+\usetikzlibrary{positioning}
+% lstings のグローバル設定
+% コードブロックはすべて Rust コードとして解釈する
+\lstset{language=Rust, style=mdRust}
+
+
+
+% Beamerのテーマ設定
+\usetheme{Madrid}
+\setbeamertemplate{navigation symbols}{}   % スライドのナビゲーションバーを非表示にする 
+% フッターとして[タイトル、日付、ページ番号]のみが表示されるようにする
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=0.7\paperwidth,ht=2.5ex,dp=1ex,leftskip=1em]{author in head/foot}%
+      \usebeamerfont{title in head/foot}\insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.2\paperwidth,ht=2.5ex,dp=1ex,center]{date in head/foot}%
+      \usebeamerfont{date in head/foot}\insertshortdate
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.1\paperwidth,ht=2.5ex,dp=1ex,right]{frame number in head/foot}%
+      \usebeamerfont{page number in head/foot}\insertframenumber{} / \inserttotalframenumber
+      \hspace*{1em}
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+
+% タイトルや著者の情報を定義する
+% TODO: 自分の情報に置き換える
+\title{タイトル}
+\author{名前}
+\institute{所属}
+\date{\today}   % \today はビルドした日付として解釈される  
+
+\begin{document}
+
+% タイトルスライド
+\frame{\titlepage}
+
+% 目次スライド
+% \section で定義したものが表示される
+\begin{frame}{目次}
+  \tableofcontents
+\end{frame}
+
+%% =====================================================================
+%% ここからサンプルのスライド
+%% 自分のスライドを作成する時は削除すればよい
+\section{section を使うと目次ページに表示される}
+\subsection{subsection を使うと目次ページで親セクションの下に表示される}
+
+\section{図の挿入}
+\input{../example/figure.tex}
+
+\section{表の挿入}
+\input{../example/tabular.tex}
+
+\section{強調ブロック}
+\input{../example/block.tex}
+
+\section{スライドのレイアウト変更}
+\input{../example/column.tex}
+
+\section{コードブロック}
+\input{../example/listing.tex}
+
+\section{uml}
+\input{../example/uml.tex}
+
+\section{プロット}
+\input{../example/plot.tex}
+
+\section{参考文献の挿入}
+\input{../example/reference.tex}
+
+\section{参考文献リスト}
+\begin{frame}{参考文献リスト}
+  \printbibliography  
+\end{frame}
+
+%% ここまでサンプルのスライド
+%%=======================================================================
+
+\end{document}

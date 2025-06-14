@@ -1,0 +1,35 @@
+% サンプルを元にプロットを出力する例\usetikzlibrary {datavisualization}
+\begin{frame}
+    \frametitle{プロット}
+
+    hogehoge
+
+    ふがふが
+
+    yahho-
+
+    \begin{center}  % プロットをセンタリングする環境
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel=Sample X,    % x ラベル
+                    ylabel=Sample Y,    % y ラベル
+                    % axis x line = center,  % x 軸の位置を変える
+                    % axis y line = center,  % y 軸の位置を変える
+                    % xmin=1,    % x 軸の描画範囲（最大）
+                    % xmax=3,    % x 軸の描画範囲（最小）
+                    % ymin=1,    % y 軸の描画範囲（最大）
+                    % ymax=3,    % y 軸の描画範囲（最小）
+                    grid=major,         % 
+                    width = 10cm,       % プロットの横の長さ
+                    height = 5cm        % プロットの縦の長さ
+                ]
+                % CSVファイルを読み込む
+                \addplot table[
+                        col sep=comma, % CSVファイルのカラム分割を定義
+                        x=x,
+                        y=y,
+                    ] {../example/data/sample.csv}; % sample.csv を直接指定
+            \end{axis}
+        \end{tikzpicture}
+    \end{center}
+\end{frame}

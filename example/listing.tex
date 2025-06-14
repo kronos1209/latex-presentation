@@ -1,0 +1,59 @@
+% コードブロックを入れるスライドには frame のオプションとして fragile を追加する。
+% これを指定することでコードブロック内で特殊文字を利用してもそのまま出力されるようになる
+\begin{frame}[fragile]{コードブロック}
+    % このスライド内でのコードブロックのスタイルを変える場合は \begin{frame} 内で \lstset を呼び出す
+    % 特定のコードブロックにのみ適用したい場合は下の \begin{lstlisting}[options] の options の部分で設定する
+    % \lstset{basicstyle=\scriptsize}
+
+    \begin{lstlisting}[caption=タイトル,language=Rust,style=mdRust,basicstyle=\scriptsize]
+#[tokio::main]
+async fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    let _guard = common::init(
+        env!("CARGO_PKG_NAME").to_string(),
+        env!("CARGO_PKG_VERSION").to_string(),
+    );
+    tonic::transport::Server::builder()
+        .layer(tonic_tracing_opentelemetry::middleware::server::OtelGrpcLayer::default())
+        .add_service(
+            proto_definition::product::product_service_server::ProductServiceServer::new(
+                product::product::Product,
+            ),
+        )
+        .serve("0.0.0.0:8082".parse()?)
+        .await?;
+    Ok(())
+}
+    \end{lstlisting}
+\end{frame}
+
+% xcolor のマクロでカラーを定義する
+\definecolor{LightGray}{gray}{0.9}
+
+\begin{frame}[fragile]
+    \frametitle{minted パッケージを使ったコードブロック}
+
+    \begin{minted}[
+            frame = lines,  %コードブロックの上限にラインが表示される
+            bgcolor=LightGray,  %コードブロックの背景を指定する
+            fontsize=\scriptsize   %コードブロック内の文字サイズを指定する
+        ]{Rust}
+#[tokio::main]
+async fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    let _guard = common::init(
+        env!("CARGO_PKG_NAME").to_string(),
+        env!("CARGO_PKG_VERSION").to_string(),
+    );
+    tonic::transport::Server::builder()
+        .layer(tonic_tracing_opentelemetry::middleware::server::OtelGrpcLayer::default())
+        .add_service(
+            proto_definition::product::product_service_server::ProductServiceServer::new(
+                product::product::Product,
+            ),
+        )
+        .serve("0.0.0.0:8082".parse()?)
+        .await?;
+    Ok(())
+}
+    \end{minted}
+
+\end{frame}
